@@ -1,5 +1,7 @@
 defmodule Diceware.Passphrase do
-  @moduledoc ""
+  @moduledoc """
+  Models a passphrase.
+  """
 
   alias IO.ANSI
   alias __MODULE__
