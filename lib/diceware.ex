@@ -27,7 +27,8 @@ defmodule Diceware do
   @doc """
   Writes the passphrase to the screen. Takes a keyword list of options. Supported options include:
 
-    color: true | false -> use ANSI colors when printing - Each part of the passphrase will be a different color
+    * color: true | false
+      use ANSI colors when printing - Each part of the passphrase will be a different color
 
   """
   @spec print(Diceware.Passphrase.t(), Keyword.t()) :: :ok
@@ -37,7 +38,7 @@ defmodule Diceware do
     if color do
       IO.write(Diceware.Passphrase.with_colors(phrase) <> "\n")
     else
-      IO.write(phrase <> "\n")
+      IO.write("#{phrase}\n")
     end
   end
 

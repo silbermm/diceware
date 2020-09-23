@@ -1,5 +1,5 @@
 defmodule Diceware.Passphrase do
-  @moduledoc false
+  @moduledoc ""
 
   alias IO.ANSI
   alias __MODULE__
@@ -14,6 +14,7 @@ defmodule Diceware.Passphrase do
 
   @colors [ANSI.cyan(), ANSI.magenta(), ANSI.yellow(), ANSI.blue(), ANSI.green(), ANSI.red()]
 
+  @doc false
   @spec new(list()) :: Passphrase.t()
   def new(words) do
     %Passphrase{
@@ -23,6 +24,7 @@ defmodule Diceware.Passphrase do
     }
   end
 
+  @doc "Return a string of the password with ANSI colors for printing to the console"
   @spec with_colors(Passphrase.t()) :: String.t()
   def with_colors(%Passphrase{} = passphrase) do
     passphrase.number_of_words
