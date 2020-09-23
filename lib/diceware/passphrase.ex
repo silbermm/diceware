@@ -25,14 +25,15 @@ defmodule Diceware.Passphrase do
   end
   def new(_words), do: %Passphrase{errors: [:invalid_wordlist]}
 
-  @doc """
+  @doc ~S"""
   Return a string of the password with ANSI colors for printing to the console
 
-  Example
+  ## Examples
 
-    iex> passphrase = Diceware.Passphrase.new(["a", "b", "c"])
-    iex> Diceware.Passphrase.with_colors(passphrase)
-    "\e[36ma\e[35mb\e[33mc"
+      iex> passphrase = Diceware.Passphrase.new(["a", "b", "c"])
+      iex> Diceware.Passphrase.with_colors(passphrase)
+      "\e[36ma\e[35mb\e[33mc"
+
   """
   @spec with_colors(Passphrase.t()) :: String.t()
   def with_colors(%Passphrase{} = passphrase) do
