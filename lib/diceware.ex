@@ -32,13 +32,13 @@ defmodule Diceware do
 
   """
   @spec print(Diceware.Passphrase.t(), Keyword.t()) :: :ok
-  def print(%Diceware.Passphrase{} = phrase, opts) do
+  def print(%Diceware.Passphrase{} = phrase, opts \\ []) do
     color = Keyword.get(opts, :color, false)
 
     if color do
       IO.write(Diceware.Passphrase.with_colors(phrase) <> "\n")
     else
-      IO.write("#{phrase}\n")
+      IO.write(phrase.phrase <> "\n")
     end
   end
 

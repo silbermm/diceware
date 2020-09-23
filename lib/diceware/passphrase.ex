@@ -7,27 +7,36 @@ defmodule Diceware.Passphrase do
   @type t :: %Passphrase{
           words: list(),
           phrase: String.t() | nil,
-          number_of_words: number()
+          count: number()
         }
 
-  defstruct words: [], phrase: nil, number_of_words: 0
+  defstruct words: [], phrase: nil, count: 0, errors: nil
 
   @colors [ANSI.cyan(), ANSI.magenta(), ANSI.yellow(), ANSI.blue(), ANSI.green(), ANSI.red()]
 
   @doc false
   @spec new(list()) :: Passphrase.t()
-  def new(words) do
+  def new(words) when is_list(words) do
     %Passphrase{
       words: words,
       phrase: Enum.join(words),
-      number_of_words: Enum.count(words)
+      count: Enum.count(words)
     }
   end
+  def new(_words), do: %Passphrase{errors: [:invalid_wordlist]}
 
-  @doc "Return a string of the password with ANSI colors for printing to the console"
+  @doc """
+  Return a string of the password with ANSI colors for printing to the console
+
+  Example
+
+    iex> passphrase = Diceware.Passphrase.new(["a", "b", "c"])
+    iex> Diceware.Passphrase.with_colors(passphrase)
+    "\e[36ma\e[35mb\e[33mc"
+  """
   @spec with_colors(Passphrase.t()) :: String.t()
   def with_colors(%Passphrase{} = passphrase) do
-    passphrase.number_of_words
+    passphrase.count
     |> color_list()
     |> Enum.zip(passphrase.words)
     |> Enum.map(fn {c, w} -> c <> w end)
@@ -35,7 +44,7 @@ defmodule Diceware.Passphrase do
   end
 
   defp color_list(word_size) when word_size <= 6,
-    do: Enum.map(1..word_size, &Enum.at(@colors, &1))
+    do: Enum.map(0..word_size-1, &Enum.at(@colors, &1))
 
   defp color_list(word_size) do
     number_of_color_lists = div(word_size, Enum.count(@colors))
