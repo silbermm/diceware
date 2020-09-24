@@ -25,19 +25,6 @@ defmodule DicewareTest do
     assert passphrase.phrase != passphrase2.phrase
   end
 
-  test "generates random password with passed in file" do
-    file = Path.join(:code.priv_dir(:diceware), "test.txt")
-    passphrase = Diceware.generate(wordlist_file: file, number_of_words: 8)
-    assert passphrase.count == 8
-    assert passphrase.phrase == "aaaaaaaa"
-  end
-
-  test "handles invalid file path" do
-    assert_raise(ArgumentError, "invalid file path", fn -> 
-      Diceware.generate(wordlist_file: "garbage.txt", number_of_words: 8)
-    end)
-  end
-
   test "with color - more than 6 words" do
     pass = Passphrase.new(["word", "another", "random", "2", "3", "4", "5"])
 

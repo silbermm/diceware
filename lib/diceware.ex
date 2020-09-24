@@ -11,6 +11,7 @@ defmodule Diceware do
   alias Diceware.Passphrase
 
   @colors [ANSI.cyan(), ANSI.magenta(), ANSI.yellow(), ANSI.blue(), ANSI.green(), ANSI.red()]
+  @wordlist_stream File.stream!("priv/diceware.txt")
 
   @doc ~S"""
   Generate a passphrase with at least 6 words.
@@ -18,11 +19,7 @@ defmodule Diceware do
   Takes a keyword list of options:
 
     * `:number_of_words` - defaults to 6
-    * `:wordlist_file` - local path to the [Diceware Word List file](https://world.std.com/~reinhold/diceware8k.txt)
 
-  If the `:wordlist_file` option is not passed in, it will try to read the file locally from the libraries `priv` directory, however, this doesn't work for apps using `escripts`.
-
-  > If your using this library in an escript - you'll have to include the `:wordlist_file` option. 
   """
   @spec generate(Keyword.t()) :: Diceware.Passphrase.t()
   def generate(opts \\ []) do
@@ -30,7 +27,7 @@ defmodule Diceware do
     randoms = random_numbers(number)
 
     try do
-      file_stream(opts)
+      @wordlist_stream
       |> Stream.with_index()
       |> Stream.filter(fn {_word, index} ->
         Enum.member?(randoms, index)
@@ -48,15 +45,6 @@ defmodule Diceware do
   defp get_word(_), do: ""
 
   defp random_numbers(number), do: Enum.map(1..number, fn _ -> Enum.random(1..8_192) end)
-
-  defp file_stream(opts) do
-    opts
-    |> Keyword.get(
-      :wordlist_file,
-      :diceware |> :code.priv_dir() |> Path.join("diceware.txt")
-    )
-    |> File.stream!()
-  end
 
   @doc ~S"""
   Return a string of the password with ANSI colors for printing to the console
