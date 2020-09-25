@@ -42,9 +42,14 @@ defmodule DicewareTest do
   end
 
   test "with color - more than 6 words" do
-    #pass = Passphrase.new(["word", "another", "random", "2", "3", "4", "5"])
+    # pass = Passphrase.new(["word", "another", "random", "2", "3", "4", "5"])
     pass = Diceware.generate(count: 7)
+
     assert Diceware.with_colors(pass) ==
-             "\e[36m#{Enum.at(pass.words, 0)}\e[35m#{Enum.at(pass.words, 1)}\e[33m#{Enum.at(pass.words, 2)}\e[34m#{Enum.at(pass.words, 3)}\e[32m#{Enum.at(pass.words, 4)}\e[31m#{Enum.at(pass.words, 5)}\e[36m#{Enum.at(pass.words, 6)}"
+             "\e[36m#{Enum.at(pass.words, 0)}\e[35m#{Enum.at(pass.words, 1)}\e[33m#{
+               Enum.at(pass.words, 2)
+             }\e[34m#{Enum.at(pass.words, 3)}\e[32m#{Enum.at(pass.words, 4)}\e[31m#{
+               Enum.at(pass.words, 5)
+             }\e[36m#{Enum.at(pass.words, 6)}"
   end
 end
