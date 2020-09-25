@@ -1,5 +1,7 @@
 defmodule DicewareTest do
   use ExUnit.Case
+  use ExUnitProperties
+
   doctest Diceware
 
   alias Diceware.Passphrase
@@ -9,9 +11,11 @@ defmodule DicewareTest do
     assert passphrase.count == 6
   end
 
-  test "generates random password - custom length" do
-    passphrase = Diceware.generate(number_of_words: 8)
-    assert passphrase.count == 8
+  property "always is the correct size" do
+    check all num <- integer(1..16) do
+      passphrase = Diceware.generate(number_of_words: num)
+      assert passphrase.count == num
+    end
   end
 
   test "generates random password - unique" do
@@ -24,6 +28,8 @@ defmodule DicewareTest do
     passphrase2 = Diceware.generate()
     assert passphrase.phrase != passphrase2.phrase
   end
+
+  
 
   test "with color - more than 6 words" do
     pass = Passphrase.new(["word", "another", "random", "2", "3", "4", "5"])
