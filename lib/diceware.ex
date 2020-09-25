@@ -18,12 +18,12 @@ defmodule Diceware do
 
   Takes a keyword list of options:
 
-    * `:number_of_words` - defaults to 6
+    * `:count` - number of words in pharase, defaults to 6
 
   """
   @spec generate(Keyword.t()) :: Diceware.Passphrase.t()
   def generate(opts \\ []) do
-    number = Keyword.get(opts, :number_of_words, 6)
+    number = Keyword.get(opts, :count, 6)
     randoms = random_numbers(number)
 
     try do
@@ -37,14 +37,16 @@ defmodule Diceware do
       |> Diceware.Passphrase.new()
     rescue
       e in File.Error ->
+        Logger.error(inspect(e))
         raise ArgumentError, message: "invalid file path"
     end
   end
 
-  defp get_word({word, _}), do: String.trim(word)
+  defp get_word({word, _}), do: String.trim(word, "\n")
   defp get_word(_), do: ""
 
-  defp random_numbers(number), do: Enum.map(1..number, fn _ -> Enum.random(1..8_192) end)
+  @doc false
+  def random_numbers(number), do: Enum.map(1..number, fn _ -> Enum.random(0..8_191) end)
 
   @doc ~S"""
   Return a string of the password with ANSI colors for printing to the console
