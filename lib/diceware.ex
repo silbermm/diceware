@@ -7,8 +7,10 @@ defmodule Diceware do
   Creating a passphrase combining readable words helps the user more easily memorize it.
   """
 
-  alias IO.ANSI
   alias Diceware.Passphrase
+  alias IO.ANSI
+
+  require Logger
 
   @colors [ANSI.cyan(), ANSI.magenta(), ANSI.yellow(), ANSI.blue(), ANSI.green(), ANSI.red()]
   @wordlist_stream File.stream!("priv/diceware.txt")
@@ -38,7 +40,7 @@ defmodule Diceware do
     rescue
       e in File.Error ->
         Logger.error(inspect(e))
-        raise ArgumentError, message: "invalid file path"
+        reraise ArgumentError, message: "invalid file path"
     end
   end
 
