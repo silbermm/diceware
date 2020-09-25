@@ -36,7 +36,7 @@ defmodule Diceware do
       |> Enum.to_list()
       |> Diceware.Passphrase.new()
     rescue
-      e in File.Error -> 
+      e in File.Error ->
         raise ArgumentError, message: "invalid file path"
     end
   end
