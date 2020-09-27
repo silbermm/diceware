@@ -28,20 +28,14 @@ defmodule Diceware do
     number = Keyword.get(opts, :count, 6)
     randoms = random_numbers(number)
 
-    try do
-      @wordlist_stream
-      |> Stream.with_index()
-      |> Stream.filter(fn {_word, index} ->
-        Enum.member?(randoms, index)
-      end)
-      |> Stream.map(&get_word/1)
-      |> Enum.to_list()
-      |> Diceware.Passphrase.new()
-    rescue
-      e in File.Error ->
-        Logger.error(inspect(e))
-        reraise ArgumentError, message: "invalid file path"
-    end
+    @wordlist_stream
+    |> Stream.with_index()
+    |> Stream.filter(fn {_word, index} ->
+      Enum.member?(randoms, index)
+    end)
+    |> Stream.map(&get_word/1)
+    |> Enum.to_list()
+    |> Diceware.Passphrase.new()
   end
 
   defp get_word({word, _}), do: String.trim(word, "\n")

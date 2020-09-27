@@ -8,6 +8,10 @@ defmodule Diceware.MixProject do
       package: package(),
       version: "0.2.1",
       elixir: "~> 1.10",
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        flags: ["-Wunmatched_returns", :error_handling, :race_conditions, :underspecs]
+      ],
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
