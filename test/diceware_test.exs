@@ -9,13 +9,6 @@ defmodule DicewareTest do
     assert passphrase.count == 6
   end
 
-  property "random number count is always correct" do
-    check all num <- integer(1..10) do
-      nums = Diceware.random_numbers(num)
-      assert Enum.count(nums) == num
-    end
-  end
-
   property "random numbers are always below 8192" do
     check all num <- integer(1..10) do
       nums = Diceware.random_numbers(num)

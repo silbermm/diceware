@@ -1,3 +1,4 @@
+![](https://github.com/silbermm/diceware/workflows/Build/badge.svg)
 ![Hex.pm](https://img.shields.io/hexpm/v/diceware?style=flat-square)
 
 # Diceware
