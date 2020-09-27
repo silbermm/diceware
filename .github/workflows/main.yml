@@ -74,7 +74,14 @@ jobs:
       with:
         elixir-version: '1.10.3' # Define the elixir version [required]
         otp-version: '22.3' # Define the OTP version [required]
-
+    - uses: actions/cache@v2
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+        restore-keys: |
+          ${{ runner.os }}-mix-
+    - name: Install dependencies
+      run: mix deps.get
     - name: Publish to Hex.pm
       run: mix hex.publish
       env:
