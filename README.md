@@ -15,3 +15,22 @@ def deps do
   ]
 end
 ```
+
+## Usage
+
+Ask for a new password and get a `Diceware.Passphrase` back
+```
+iex> passphrase = Dicware.generate()
+%Diceware.Passphrase{}
+
+iex> passphrase.phrase
+boundfreakolavwho3a9z
+```
+
+Specify how many words to use when building the passphrase
+```
+Diceware.generate(count: 10)
+barrebeastcrissethanfrancmabelswigswineuz57th
+```
+
+Official docs available on [hex.pm](https://hex.pm/diceware)
