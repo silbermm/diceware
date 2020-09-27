@@ -1,6 +1,6 @@
-# Diceware
-
 ![Hex.pm](https://img.shields.io/hexpm/v/diceware?style=flat-square)
+
+# Diceware
 
 Generate passphrases using the [Diceware](https://theworld.com/~reinhold/diceware.html) method.
 
