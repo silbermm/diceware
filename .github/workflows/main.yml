@@ -2,10 +2,7 @@ name: Build and Test
 
 on:
   push:
-    branches-ignore:
-      - main
-  pull_request:
-    branches: '*'
+    branches: [main]
 
 jobs:
   analysis:
@@ -14,7 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
+      with:
+        ref: main
+
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
@@ -43,7 +42,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
+      with:
+        ref: main
+
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
@@ -59,3 +60,16 @@ jobs:
       run: mix deps.get
     - name: Run tests
       run: MIX_ENV=test mix do compile, test
+  deploy:
+    name: Deploy to Hex
+    runs-on: ubuntu-latest
+    depends_on: [test, analysis]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: main
+    - name: Publish to Hex.pm
+      uses: erlangpack/github-action@v1
+      env:
+        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
