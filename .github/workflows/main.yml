@@ -63,7 +63,7 @@ jobs:
   deploy:
     name: Deploy to Hex
     runs-on: ubuntu-latest
-    depends_on: [test, analysis]
+    needs: [test, analysis]
 
     steps:
     - uses: actions/checkout@v2
