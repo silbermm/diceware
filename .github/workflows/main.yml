@@ -83,6 +83,6 @@ jobs:
     - name: Install dependencies
       run: mix deps.get
     - name: Publish to Hex.pm
-      run: mix hex.publish
+      run: mix hex.publish --yes
       env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
