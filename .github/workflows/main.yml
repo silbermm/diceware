@@ -70,6 +70,6 @@ jobs:
       with:
         ref: main
     - name: Publish to Hex.pm
-      uses: erlangpack/github-action@v1
+      run: mix hex.publish
       env:
         HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
