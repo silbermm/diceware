@@ -23,4 +23,13 @@ defmodule Diceware.Passphrase do
       count: Enum.count(words)
     }
   end
+
+  @doc false
+  def new(%{"count" => count, "words" => words, "phrase" => phrase}) do
+    %Passphrase{
+      words: words,
+      phrase: phrase,
+      count: count
+    }
+  end
 end
