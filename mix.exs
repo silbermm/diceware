@@ -6,7 +6,7 @@ defmodule Diceware.MixProject do
       app: :diceware,
       description: "Generate passphrases using the Diceware method",
       package: package(),
-      version: "0.2.4",
+      version: "0.2.5",
       elixir: "~> 1.10",
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
