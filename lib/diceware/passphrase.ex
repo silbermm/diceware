@@ -12,6 +12,7 @@ defmodule Diceware.Passphrase do
           count: number()
         }
 
+  @derive {Jason.Encoder, only: [:words, :phrase, :count]}
   defstruct words: [], phrase: nil, count: 0
 
   @doc false
