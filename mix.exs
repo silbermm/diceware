@@ -6,7 +6,7 @@ defmodule Diceware.MixProject do
       app: :diceware,
       description: "Generate passphrases using the Diceware method",
       package: package(),
-      version: "0.2.5",
+      version: "0.2.6",
       elixir: "~> 1.10",
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
@@ -25,10 +25,10 @@ defmodule Diceware.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:jason, "~> 1.1"},
+      {:jason, "~> 1.2"},
       {:stream_data, "~> 0.5.0", only: [:dev, :test]}
     ]
   end

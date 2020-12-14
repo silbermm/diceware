@@ -20,7 +20,7 @@ defmodule Diceware do
 
   Takes a keyword list of options:
 
-    * `:count` - number of words in pharase, defaults to 6
+    * `:count` - number of words in phrase, defaults to 6
 
   """
   @spec generate(Keyword.t()) :: Diceware.Passphrase.t()
