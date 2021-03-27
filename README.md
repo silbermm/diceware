@@ -34,4 +34,4 @@ Diceware.generate(count: 10)
 barrebeastcrissethanfrancmabelswigswineuz57th
 ```
 
-Official docs available on [hex.pm](https://hex.pm/diceware)
+Official docs available on [hex.pm](https://hexdocs.pm/diceware/0.2.6/Diceware.html)
