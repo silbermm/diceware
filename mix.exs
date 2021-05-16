@@ -36,7 +36,7 @@ defmodule Diceware.MixProject do
   defp package do
     [
       licenses: ["3-Clause BSD License"],
-      files: ["lib", "mix.exs", "README.md", "LICENSE*", "priv"],
+      files: ["lib", "mix.exs", "README.md", "LICENSE*"],
       maintainers: ["Matt Silbernagel"],
       links: %{:GitHub => "https://github.com/silbermm/diceware"}
     ]
