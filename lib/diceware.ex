@@ -13,7 +13,6 @@ defmodule Diceware do
   require Logger
 
   @colors [ANSI.cyan(), ANSI.magenta(), ANSI.yellow(), ANSI.blue(), ANSI.green(), ANSI.red()]
-  @wordlist_stream File.stream!("#{:code.priv_dir(:diceware)}/diceware.txt")
 
   @doc ~S"""
   Generate a passphrase with at least 6 words.

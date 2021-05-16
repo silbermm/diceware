@@ -3,7 +3,6 @@ defmodule Diceware.Passphrase do
   Models a passphrase.
   """
 
-  alias IO.ANSI
   alias __MODULE__
 
   @type t :: %Passphrase{
