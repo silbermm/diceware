@@ -28,7 +28,7 @@ defmodule Diceware do
     number = Keyword.get(opts, :count, 6)
     randoms = random_numbers(number)
 
-    @wordlist_stream
+    Diceware.Words.all()
     |> Stream.with_index()
     |> Stream.filter(fn {_word, index} ->
       Enum.member?(randoms, index)
