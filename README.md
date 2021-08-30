@@ -3,7 +3,7 @@
 ![](https://github.com/silbermm/diceware/workflows/Build/badge.svg)
 ![Hex.pm](https://img.shields.io/hexpm/v/diceware?style=flat-square)
 
-Generate passphrases using the [Diceware](https://theworld.com/~reinhold/diceware.html) method.
+An Elixir library to generate passphrases using the [Diceware](https://theworld.com/~reinhold/diceware.html) method.
 
 ## Installation
 
