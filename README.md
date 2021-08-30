@@ -24,13 +24,13 @@ Ask for a new password and get a `Diceware.Passphrase` back
 generated = Dicware.generate()
 IO.inspect(generated.phrase)
 ```
-will output something similar like `aliveallenhairmousyvault5555`
+will output something like `aliveallenhairmousyvault5555`
 
 You can also specify how many words to use when building the passphrase
 ```elixir
 generated = Diceware.generate(count: 10)
 IO.inspect(generated.phrase)
 ```
-will output a 10 word generated phrase like `barrebeastcrissethanfrancmabelswigswineuz57th`
+will output a generated phrase made out of 10 words, like `barrebeastcrissethanfrancmabelswigswineuz57th`
 
 Official docs available on [hex.pm](https://hexdocs.pm/diceware/0.2.6/Diceware.html)
