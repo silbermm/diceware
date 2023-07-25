@@ -76,4 +76,28 @@ defmodule Diceware do
 
     colors ++ Enum.take(@colors, extra_colors)
   end
+
+  @doc """
+  Base64 encodes the given `Diceware.Passphrase`
+
+  This DOES NOT provide encryption, but can be passed through
+  a standard string encryption tool like GPG.
+  """
+  @spec encode(Passphrase.t()) :: String.t()
+  def encode(%Passphrase{} = passphrase) do
+    passphrase
+    |> :erlang.term_to_binary()
+    |> :base64.encode()
+  end
+
+  @doc """
+  Dncodes a string to a `Diceware.Passphrase` provided it was encoded with `encode/1`
+  """
+  @spec decode(String.t()) :: Passphrase.t()
+  def decode(passphrase) do
+    passphrase
+    |> :base64.decode()
+    |> :erlang.binary_to_term()
+  end
+
 end

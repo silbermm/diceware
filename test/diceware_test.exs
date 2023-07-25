@@ -45,4 +45,13 @@ defmodule DicewareTest do
                Enum.at(pass.words, 5)
              }\e[36m#{Enum.at(pass.words, 6)}"
   end
+  test "encodes and decodes a passphrase" do
+    pass = Diceware.generate()
+    encoded = Diceware.encode(pass)     
+    refute pass == encoded
+
+
+    decoded = Diceware.decode(encoded)
+    assert decoded == pass
+  end
 end
